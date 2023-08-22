@@ -1,6 +1,9 @@
+import { ChildrenProps } from '@/types/ChildrenProps'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import SearchBar from '@/components/SearchBar'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,12 +14,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: ChildrenProps ){
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className='p-4 flex justify-around'>
+          <Link href="/home">Home</Link>
+          <Link href='/users'>Users</Link>
+          <Link href='/posts'>Posts</Link>
+          <SearchBar />
+        </nav>
+        {children}
+      </body>
     </html>
   )
 }
